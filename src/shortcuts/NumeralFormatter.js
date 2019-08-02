@@ -107,8 +107,12 @@ NumeralFormatter.prototype = {
 
             break;
         }
+        
+        const valueToReturn = !owner.signBeforePrefix ?
+                            partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') :
+                            partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') + partSignAndPrefix;
 
-        return partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '');
+        return valueToReturn;
     }
 };
 

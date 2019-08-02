@@ -1905,7 +1905,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                break;
 	        }
 
-	        return partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '');
+	        var valueToReturn = !owner.signBeforePrefix ? partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') : partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') + partSignAndPrefix;
+
+	        return valueToReturn;
 	    }
 	};
 

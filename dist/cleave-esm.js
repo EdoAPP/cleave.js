@@ -1,4 +1,4 @@
-var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 var NumeralFormatter = function (numeralDecimalMark,
                                  numeralIntegerScale,
@@ -107,8 +107,12 @@ NumeralFormatter.prototype = {
 
             break;
         }
+        
+        const valueToReturn = !owner.signBeforePrefix ?
+                            partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') :
+                            partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') + partSignAndPrefix;
 
-        return partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '');
+        return valueToReturn;
     }
 };
 
